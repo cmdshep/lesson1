@@ -18,8 +18,13 @@ public class HomeWorkApp3 {
     stringElementsInArray(4, "Значение");
     System.out.println("Задание 6*:");
     minAndMaxInArray();
+    //System.out.println("Задание 6* (улучшенный вариант: вводим длину массива и границы значений в консоли):");
+    //searchMinAndMaxInArrayMethod2();
     System.out.println("Задание 7**:");
     System.out.println(arraysSumEquals(new int[]{2, 2, 2, 1, 2, 2, 10, 1})); // результат true
+    System.out.println("Задание 8***:");
+
+
   }
 
   /* Задание 1 Задать целочисленный массив, состоящий из элементов 0 и 1.
@@ -92,6 +97,7 @@ public class HomeWorkApp3 {
   }
 
   /* Задание 6.* Задать одномерный массив и найти в нем минимальный и максимальный элементы */
+
   public static void minAndMaxInArray() {
     int[] arr = {-3, -1, -5, -6, -7, -5, -12, -5};
     int min = arr[0]; // min!= 0, а min = arr[0] для того, чтобы исключить случай, когда в массиве отсутствуют значения <=0
@@ -108,12 +114,56 @@ public class HomeWorkApp3 {
     System.out.println("min=" + min + " max=" + max);
   }
 
+  /*Задание 6. Боллее универсальный способ. С использованием инструментов классов Scanner и Math*/
+  public static void searchMinAndMaxInArrayMethod2() {
+
+    // Ввод длины массива
+    Scanner elements = new Scanner(System.in);
+    System.out.println("Введите длину массива:");
+    int i = elements.nextInt();
+
+    int[] arr = new int[i]; // Объявление массива длины i
+
+    // Ввод нижней границы значений массива
+    Scanner minVal = new Scanner(System.in);
+    System.out.println("Введите нижнюю границу значений массива:");
+    int minBorder = minVal.nextInt();
+
+    // Ввод верхней границы значений массива
+    Scanner maxVal = new Scanner(System.in);
+    System.out.println("Введите верхнюю границу значений массива:");
+    int maxBorder = maxVal.nextInt();
+
+    // Заполнение массива рандомными значениями с учетом указанных границ.
+    for (int j = 0; j < arr.length; j++) {
+      arr[j] = (int) (Math.random() * (maxBorder - minBorder) + (minBorder)); // смысл формулы описан на сайте https://vertex-academy.com/tutorials/ru/generaciya-sluchajnyx-chisel-v-java/
+    }
+
+    // Вывод сформированного массива
+    System.out.println("Сформированный массив:\n" + Arrays.toString(arr));
+
+    //Объявление переменных min и max и присвоения им значений arr[0]
+    int min = arr[0];
+    int max = arr[0];
+
+    // Вычисление минимума и максимума
+    for (int k : arr) {
+      if (k < min) {
+        min = k;
+      }
+      if (k > max) {
+        max = k;
+      }
+    }
+    System.out.println("min=" + min + " max=" + max);
+  }
   /* Задание 7**. Написать метод, в который передается не пустой одномерный целочисленный массив,
   метод должен вернуть true, если в массиве есть место, в котором сумма левой и правой части массива равны.
   Примеры:
   checkBalance([2, 2, 2, 1, 2, 2, ||| 10, 1]) → true, т.е. 2 + 2 + 2 + 1 + 2 + 2 = 10 + 1
   checkBalance([1, 1, 1, ||| 2, 1]) → true, т.е. 1 + 1 + 1 = 2 + 1
   */
+
   public static boolean arraysSumEquals(int[] arr) {
     int leftSum = 0;
     int rightSum = 0;
