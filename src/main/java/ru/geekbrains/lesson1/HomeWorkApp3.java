@@ -163,7 +163,6 @@ public class HomeWorkApp3 {
   checkBalance([2, 2, 2, 1, 2, 2, ||| 10, 1]) → true, т.е. 2 + 2 + 2 + 1 + 2 + 2 = 10 + 1
   checkBalance([1, 1, 1, ||| 2, 1]) → true, т.е. 1 + 1 + 1 = 2 + 1
   */
-
   public static boolean arraysSumEquals(int[] arr) {
     int leftSum = 0;
     int rightSum = 0;
